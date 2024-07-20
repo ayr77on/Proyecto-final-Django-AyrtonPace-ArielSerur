@@ -6,12 +6,3 @@ def inicio(request):
 
 def nosotros(request):
     return render(request, "Vicodin/nosotros.html")
-
-def profesores(request):
-    return HttpResponse("Vista profesores")
-
-def estudiantes(request):
-    return HttpResponse("Vista estudiantes")
-
-def entregables(request):
-    return HttpResponse("Vista entregables")
