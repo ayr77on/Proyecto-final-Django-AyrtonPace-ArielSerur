@@ -23,7 +23,7 @@ def crear_blog(request):
         form = BlogForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'Vicodin/form_exito.html', {'form': "Cliente","texto_breadcrumb" : "Formulario Exitoso Cliente"})
+            return render(request, 'Vicodin/form_exito.html', {'form': "Cliente","texto_breadcrumb" : "Alta de publicacion exitosa"})
     else:
         form = BlogForm()
     return render(request, 'Vicodin/publicaciones.html', {'form': form,"texto_breadcrumb" : "Dar alta publicación"})
@@ -33,7 +33,7 @@ def crear_producto(request):
         form = ProductoForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request, 'Vicodin/form_exito.html', {'form': "Producto","texto_breadcrumb" : "Formulario Exitoso Producto"})
+            return render(request, 'Vicodin/form_exito.html', {'form': "Producto","texto_breadcrumb" : "Alta de producto exitosa"})
     else:
         form = ProductoForm()
     return render(request, 'Vicodin/productos.html', {'form': form,"texto_breadcrumb" : "Dar alta producto"})

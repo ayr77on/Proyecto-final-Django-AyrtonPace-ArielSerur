@@ -3,7 +3,6 @@ from Vicodin import views
 
 urlpatterns = [
     path('', views.inicio,name="Inicio"),
-    # path('nosotros/', views.nosotros,name="Nosotros"),
     path('crear-producto/', views.crear_producto, name='CrearProducto'),
     path('crear-cliente/', views.crear_cliente, name='CrearCliente'),
     path('crear-publicacion/', views.crear_blog, name='CrearBlog'),
