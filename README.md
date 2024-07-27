@@ -11,7 +11,6 @@ Vicodin es un proyecto de una farmacéutica que permite la gestión de Clientes,
 pipenv install -r requirements.txt
 ```
 4. Ejecuta el siguiente comando para iniciar el servidor:
-
 ```bash
 python manage.py runserver
 ```
