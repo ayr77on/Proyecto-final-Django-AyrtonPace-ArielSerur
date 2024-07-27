@@ -4,6 +4,13 @@
 Vicodin es un proyecto de una farmacéutica que permite la gestión de Clientes, Productos y Publicaciones para un pequeño blog. Utiliza la API de Django para dar de alta estos modelos a través de formularios (Forms).
 
 ## Instalación
+Asegurarse de tener pipenv instalado en el sistema y luego ejecutar
+
+```bash
+pipenv install -r requirements.txt
+```
+
+Luego seguir estos pasos...
 
 1. Clona el repositorio.
 2. Navega al directorio del proyecto.
