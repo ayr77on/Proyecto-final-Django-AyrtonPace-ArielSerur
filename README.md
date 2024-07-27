@@ -25,7 +25,8 @@ En el menú principal, encontrarás cinco opciones: Inicio, Clientes, Productos,
 - **Clientes:** Formulario para registrar nuevos clientes.
 - **Productos:** Formulario para registrar nuevos productos.
 - **Publicaciones:** Formulario para crear nuevas publicaciones en el blog.
-- **Buscar Productos:** Formulario para buscar productos por el campo de Nombre. Por ejemplo, puedes buscar "Barbijo" para ver algunos productos precargados.
+- **Buscar Productos:** Formulario para buscar productos por el campo de Nombre. Por ejemplo, puedes buscar "Barbijo" para ver algunos productos precargados. 
+En caso de buscar un producto no existente arrojará un mensaje de que no se encontraron los productos.
 
 ## Administrador
 
