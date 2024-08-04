@@ -1,0 +1,58 @@
+{% extends 'Vicodin/base.html' %}
+
+{% load static %}
+
+{% block title %} Publicaciones {% endblock title %}
+
+{% block main %}
+<div class="ltn__blog-area ltn__blog-item-3-normal mb-100">
+    <div class="container">
+        <div class="row">
+            <!-- Blog Item -->
+            {% if not object_list %}
+            <!-- Mensaje cuando no hay productos -->
+            <div class="col-12">
+                <p>No hay publicaciones.</p>
+            </div>
+            {% else %}
+            {% for publicacion in object_list %}
+                <div class="col-lg-4 col-sm-6 col-12">
+                    <div class="ltn__blog-item ltn__blog-item-3">
+                        <div class="ltn__blog-img">
+                            <a href="blog-details.html"><img src="img/blog/1.jpg" alt="#"></a>
+                        </div>
+                        <div class="ltn__blog-brief">
+                            <!-- <div class="ltn__blog-meta">
+                                <ul>
+                                    <li class="ltn__blog-author">
+                                        <a href="#"><i class="far fa-user"></i>by: Admin</a>
+                                    </li>
+                                    <li class="ltn__blog-tags">
+                                        <a href="#"><i class="fas fa-tags"></i>Services</a>
+                                    </li>
+                                </ul>
+                            </div> -->
+                            <h3 class="ltn__blog-title"><a href="{% url 'PublicacionDetail' publicacion.id %}">{{publicacion.name}}</a></h3>
+                            <div class="ltn__blog-meta-btn">
+                                <div class="ltn__blog-meta">
+                                    <ul>
+                                        <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>{{publicacion.date}}</li>
+                                    </ul>
+                                </div>
+                                <div class="ltn__blog-btn">
+                                    <a href="{% url 'PublicacionDetail' publicacion.id %}">Read more</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% endif %}
+
+            <a href="{% url 'PublicacionCreate' %}" class="btn theme-btn-1 btn-effect-1 text-uppercase">Crear nueva
+                Publicacion</a>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

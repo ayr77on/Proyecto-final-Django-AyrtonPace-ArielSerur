@@ -1,0 +1,40 @@
+{% extends 'Vicodin/base.html' %}
+
+{% load static %}
+
+{% block title %} Detalle publicacion {% endblock title %}
+
+{% block main %}
+<div class="ltn__page-details-area ltn__blog-details-area mb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="ltn__blog-details-wrap">
+                    <div class="ltn__page-details-inner ltn__blog-details-inner">
+                        <h2 class="ltn__blog-title">{{blog.name}}
+                        </h2>
+                        <div class="ltn__blog-meta">
+                            <ul>
+                                <!-- <li class="ltn__blog-author">
+                                    <a href="#"><img src="img/blog/author.jpg" alt="#">By: Ethan</a>
+                                </li> -->
+                                <li class="ltn__blog-date">
+                                    <i class="far fa-calendar-alt"></i>{{blog.date}}
+                                </li>
+                                <!-- <li>
+                                    <a href="#"><i class="far fa-comments"></i>35 Comments</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                        
+                        <p>{{blog.description}}</p>
+                        <a class="btn btn-danger" href="{% url 'PublicacionDelete' blog.id %}">Borrar</a>
+                        <a class="btn btn-success" href="{% url 'PublicacionUpdate' blog.id %}">Editar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+{% endblock main %}

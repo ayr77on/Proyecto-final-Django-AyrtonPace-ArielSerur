@@ -1,0 +1,81 @@
+{% extends 'Vicodin/base.html' %}
+
+{% load static %}
+
+{% block title %} Productos {% endblock title %}
+
+{% block main %}
+<div class="ltn__product-area ltn__product-gutter mb-120">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="liton_product_grid">
+                        <div class="ltn__product-tab-content-inner ltn__product-grid-view">
+                            <div class="row">
+                                {% if not object_list %}
+                                <!-- Mensaje cuando no hay productos -->
+                                <div class="col-12">
+                                    <p>No se encontraron los productos buscados.</p>
+                                </div>
+                                {% else %}
+                                <!-- Iteración sobre los productos si existen -->
+                                {% for producto in object_list %}
+                                <!-- ltn__product-item -->
+                                <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
+                                    <div class="ltn__product-item ltn__product-item-3 text-center">
+                                        <div class="product-img">
+                                            <a href="#"><img src="{% static 'Vicodin/assets/img/product/12.png' %}"
+                                                    alt="#"></a>
+                                            <div class="product-hover-action">
+                                                <ul>
+                                                    <li>
+                                                        <a href="{% url 'ProductoDetail' producto.id %}" title="Ver detalle" >
+                                                            <i class="far fa-eye"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="Add to Cart" data-bs-toggle="modal"
+                                                            data-bs-target="#add_to_cart_modal">
+                                                            <i class="fas fa-shopping-cart"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" title="Wishlist" data-bs-toggle="modal"
+                                                            data-bs-target="#liton_wishlist_modal">
+                                                            <i class="far fa-heart"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-info">
+                                            <div class="product-ratting">
+                                                <ul>
+                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <h2 class="product-title"><a href="#">{{producto.name}}</a></h2>
+                                            <div class="product-price">
+                                                <span>${{producto.price}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                                <a href="{% url 'ProductoCreate' %}" class="btn theme-btn-1 btn-effect-1 text-uppercase" >Crear nuevo
+                                    Producto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}

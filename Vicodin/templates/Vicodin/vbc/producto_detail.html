@@ -1,0 +1,88 @@
+{% extends 'Vicodin/base.html' %}
+
+{% load static %}
+
+{% block title %} Busqueda productos {% endblock title %}
+
+{% block main %}
+<div class="ltn__shop-details-area pb-85">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="ltn__shop-details-inner mb-60">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="ltn__shop-details-img-gallery">
+                                <div class="ltn__shop-details-large-img">
+                                    <div class="single-large-img">
+                                        <a href="{% static 'Vicodin/assets/img/product/12.png' %}" data-rel="lightcase:myCollection">
+                                            <img src="{% static 'Vicodin/assets/img/product/12.png' %}" alt="Image">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ltn__shop-details-small-img slick-arrow-2">
+                                    <div class="single-small-img">
+                                        <img src="{% static 'Vicodin/assets/img/product/12.png' %}" alt="Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="modal-product-info shop-details-info pl-0">
+                                <div class="product-ratting">
+                                    <ul>
+                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                        <li><a href="#"><i class="far fa-star"></i></a></li>
+                                        <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
+                                    </ul>
+                                </div>
+                                <h3>{{ producto.name }}</h3>
+                                <div class="product-price">
+                                    <span>${{ producto.price }}</span>
+                                </div>
+                                <div class="ltn__product-details-menu-3">
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'ProductoUpdate' producto.id %}" title="Editar">
+                                                <i class="far fa-edit"></i>
+                                                <span>Editar</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'ProductoDelete' producto.id %}" title="Borrar">
+                                                <i class="far fa-delete"></i>
+                                                <span>Borrar</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Shop Tab Start -->
+                <div class="ltn__shop-details-tab-inner ltn__shop-details-tab-inner-2">
+                    <div class="ltn__shop-details-tab-menu">
+                        <div class="nav">
+                            <a class="active show" data-bs-toggle="tab" href="#liton_tab_details_1_1">Description</a>
+                        </div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="liton_tab_details_1_1">
+                            <div class="ltn__shop-details-tab-content-inner">
+                                <h4 class="title-2">Descripcion</h4>
+                               <p>{{producto.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Shop Tab End -->
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}
