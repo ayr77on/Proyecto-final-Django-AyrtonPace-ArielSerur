@@ -1,5 +1,7 @@
 # Archivos de compilación de Python
 __pycache__/
+./Proyecto_web/__pycache__/
+./users/__pycache__/
 *.pyc
 
 # Archivos de pipenv. Sólo dejamos requirements.txt

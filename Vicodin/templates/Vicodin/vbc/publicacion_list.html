@@ -19,19 +19,20 @@
                 <div class="col-lg-4 col-sm-6 col-12">
                     <div class="ltn__blog-item ltn__blog-item-3">
                         <div class="ltn__blog-img">
-                            <a href="blog-details.html"><img src="img/blog/1.jpg" alt="#"></a>
+                            {% if publicacion.image %}
+                                <a href="{% url 'PublicacionDetail' publicacion.id %}"><img style="width: -webkit-fill-available;" src=" {{publicacion.image.url}}" alt="{{publicacion.name}}"></a>
+                            {% else %}
+                                <a href="{% url 'PublicacionDetail' publicacion.id %}"><img src=" {% static 'Vicodin/assets/img/no-image.jpg' %}" alt="{{publicacion.name}}"></a>
+                            {% endif %}
                         </div>
                         <div class="ltn__blog-brief">
-                            <!-- <div class="ltn__blog-meta">
+                            <div class="ltn__blog-meta">
                                 <ul>
                                     <li class="ltn__blog-author">
-                                        <a href="#"><i class="far fa-user"></i>by: Admin</a>
-                                    </li>
-                                    <li class="ltn__blog-tags">
-                                        <a href="#"><i class="fas fa-tags"></i>Services</a>
+                                        <span></span> <i class="far fa-user"></i>by: {{publicacion.author}}</span>
                                     </li>
                                 </ul>
-                            </div> -->
+                            </div>
                             <h3 class="ltn__blog-title"><a href="{% url 'PublicacionDetail' publicacion.id %}">{{publicacion.name}}</a></h3>
                             <div class="ltn__blog-meta-btn">
                                 <div class="ltn__blog-meta">

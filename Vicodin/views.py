@@ -58,7 +58,7 @@ def buscar_producto(request):
 
 
 # VISTAS BASADAS EN CLASES - Productos
-class ProductoListView(LoginRequiredMixin, ListView):
+class ProductoListView(ListView):
     model = Producto
     template_name = "Vicodin/vbc/producto_list.html"
     def get(self, request, *args, **kwargs):
@@ -97,7 +97,7 @@ class ProductoDeleteView(LoginRequiredMixin, DeleteView):
 # --------------------------------------------------------------------------------
 
 # VISTAS BASADAS EN CLASES - Blog
-class PublicacionListView(LoginRequiredMixin, ListView):
+class PublicacionListView(ListView):
     model = Blog
     template_name = "Vicodin/vbc/publicacion_list.html"
     def get(self, request, *args, **kwargs):
@@ -115,7 +115,7 @@ class PublicacionCreateView(LoginRequiredMixin, CreateView):
     model = Blog
     template_name = "Vicodin/vbc/publicacion_create.html"
     login_url = '/users/login/'
-    fields = ["name", "date", "description"]
+    fields = ["name", "date", "description",'body','image']
     success_url = reverse_lazy("PublicacionList")
 
 

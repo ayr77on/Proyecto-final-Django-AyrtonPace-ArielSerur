@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,authenticate
-from users.forms import UserRegisterForm
+from users.forms import UserEditForm, UserRegisterForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 
 def login_request(request):
 
@@ -40,3 +43,29 @@ def register(request):
 
     form = UserRegisterForm()
     return render(request,"users/register.html" ,  {"form":form, "msg_register": msg_register})
+
+# @login_required
+def editar_perfil(request):
+    usuario = request.user
+
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST, request.FILES, instance=usuario)
+        if miFormulario.is_valid():
+            print(miFormulario.cleaned_data)
+            if miFormulario.cleaned_data.get('imagen'):
+                usuario.imagen.imagen = miFormulario.cleaned_data.get('imagen')
+                usuario.imagen.save()
+            miFormulario.save()
+
+            return render(request, "Vicodin/index.html")
+
+    else:
+        miFormulario = UserEditForm(instance=usuario)
+
+    return render(request, "users/edit_user.html", {"form": miFormulario, "usuario": usuario})
+
+
+# Test123!
+class CambiarContrasenia(LoginRequiredMixin, PasswordChangeView):
+    template_name = "users/change_pass.html"
+    success_url = reverse_lazy("EditarPerfil")

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Producto(models.Model):
     name = models.CharField(max_length=100)
@@ -21,7 +22,10 @@ class Cliente(models.Model):
 class Blog(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    body = models.TextField(default='')
+    author = models.ForeignKey(User, on_delete=models.CASCADE,default=1)
     date = models.DateField()
+    image = models.ImageField(upload_to='blog_images/', null=True, blank=True)
 
     def __str__(self):
         return self.name

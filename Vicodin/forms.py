@@ -18,7 +18,7 @@ class ClienteForm(forms.ModelForm):
 class BlogForm(forms.ModelForm):
     class Meta:
         model = Blog
-        fields = ['name', 'description', 'date']
+        fields = ['name', 'description', 'date','body','image']
         widgets = {
             'date': forms.DateInput(format='%Y-%m-%d', attrs={'type': 'date'}),
         }

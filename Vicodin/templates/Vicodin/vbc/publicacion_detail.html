@@ -15,19 +15,29 @@
                         </h2>
                         <div class="ltn__blog-meta">
                             <ul>
-                                <!-- <li class="ltn__blog-author">
-                                    <a href="#"><img src="img/blog/author.jpg" alt="#">By: Ethan</a>
-                                </li> -->
+                                <li class="ltn__blog-author">
+                                    {% if blog.author.imagen %}
+                                        <a href="#"><img src="{{ blog.author.imagen.imagen.url }}" alt="Author Image">By: {{ blog.author }}</a>
+                                    {% else %}
+                                        <a href="#"><img src="{% static 'Vicodin/assets/img/default-avatar.png' %}" alt="Default Image">By: {{ blog.author }}</a>
+                                    {% endif %}
+                                </li>
+                                <br>
+                                {% if blog.image %}
+                                <img style="width: -webkit-fill-available;" src=" {{blog.image.url}}" alt="{{blog.name}}">
+                                {% else %}
+                                <img src=" {% static 'Vicodin/assets/img/no-image.jpg' %}" alt="{{blog.name}}">
+                                {% endif %}
+
                                 <li class="ltn__blog-date">
                                     <i class="far fa-calendar-alt"></i>{{blog.date}}
                                 </li>
-                                <!-- <li>
-                                    <a href="#"><i class="far fa-comments"></i>35 Comments</a>
-                                </li> -->
                             </ul>
                         </div>
                         
                         <p>{{blog.description}}</p>
+                        <br>
+                        <p>{{blog.body}}</p>
                         <a class="btn btn-danger" href="{% url 'PublicacionDelete' blog.id %}">Borrar</a>
                         <a class="btn btn-success" href="{% url 'PublicacionUpdate' blog.id %}">Editar</a>
                     </div>
