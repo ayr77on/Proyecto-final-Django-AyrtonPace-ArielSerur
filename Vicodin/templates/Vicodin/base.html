@@ -57,6 +57,7 @@
                                     <div class="ltn__main-menu">
                                         <ul>
                                             <li><a href="{% url 'Inicio' %}">Inicio</a></li>
+                                            <li><a href="{% url 'SobreNosotros' %}">Sobre nosotros</a></li>
                                             <li><a href="{% url 'ProductoList' %}">Productos</a></li>
                                             <li><a href="{% url 'PublicacionList' %}">Publicaciones</a></li>
                                             <li><a href="{% url 'BuscarProducto' %}">Buscar productos</a></li>
@@ -72,7 +73,11 @@
                                 <ul>
                                     {% if request.user.is_authenticated %}
                                         <li>
-                                            <img src="{{request.user.imagen.imagen.url}}" class="avatar" alt="Avatar del usuario">
+                                            {% if request.user.imagen.imagen.url%}
+                                                <img src="{{request.user.imagen.imagen.url}}" class="avatar" alt="Avatar del usuario">
+                                            {% else %}
+                                                <img src="{% static 'Vicodin/assets/img/default-avatar.png' %}" class="avatar icon-user" alt="Avatar del usuario">
+                                            {% endif %}
                                             <ul>
                                                 <li><a href="{% url 'EditarPerfil' %}">{{ request.user.username }}</a></li>
                                                 <li><a href="{% url 'Logout' %}" onclick="event.preventDefault(); logout();">Cerrar sesión</a></li>

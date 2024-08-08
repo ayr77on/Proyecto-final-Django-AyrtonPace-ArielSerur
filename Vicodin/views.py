@@ -1,13 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from Vicodin.models import Blog, Producto
-from .forms import BlogForm, BuscarProductoForm, ClienteForm, ProductoForm
+from Vicodin.models import Blog, Comentario, Producto
+from .forms import BlogForm, BuscarProductoForm, ClienteForm, ComentarioForm, ProductoForm
 
 def inicio(request):
     return render(request, "Vicodin/index.html")
@@ -56,6 +55,9 @@ def buscar_producto(request):
 
     return render(request, "Vicodin/productos_busqueda.html", {"mi_formulario": mi_formulario,"texto_breadcrumb" : "Buscar productos"})
 
+def about(request):
+    return render(request, "Vicodin/nosotros.html")
+
 
 # VISTAS BASADAS EN CLASES - Productos
 class ProductoListView(ListView):
@@ -82,7 +84,7 @@ class ProductoCreateView(LoginRequiredMixin, CreateView):
 class ProductoUpdateView(LoginRequiredMixin, UpdateView):
     model = Producto
     success_url = reverse_lazy("ProductoList")
-    login_url = '/users/login/'
+    login_url = '/accounts/login/'
     fields = ["name", "price", "description"]
     template_name = "Vicodin/vbc/producto_update.html"
 
@@ -90,7 +92,7 @@ class ProductoUpdateView(LoginRequiredMixin, UpdateView):
 class ProductoDeleteView(LoginRequiredMixin, DeleteView):
     model = Producto
     success_url = reverse_lazy("ProductoList")
-    login_url = '/users/login/' 
+    login_url = '/accounts/login/' 
     template_name = 'Vicodin/vbc/producto_delete.html'
 
 
@@ -104,17 +106,52 @@ class PublicacionListView(ListView):
         return super().get(request, *args, **kwargs)
 
 
-class PublicacionDetailView(LoginRequiredMixin, DetailView):
+# class PublicacionDetailView(DetailView):
+#     model = Blog
+#     template_name = "Vicodin/vbc/publicacion_detail.html"
+#     def get_login_url(self):
+#         return self.login_url
+
+class PublicacionDetailView(LoginRequiredMixin, FormMixin, DetailView):
     model = Blog
     template_name = "Vicodin/vbc/publicacion_detail.html"
-    def get_login_url(self):
-        return self.login_url
+    form_class = ComentarioForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comentarios'] = Comentario.objects.filter(blog=self.get_object())
+        context['form'] = self.get_form()
+        return context
+
+    def get_success_url(self):
+        return reverse('PublicacionDetail', kwargs={'pk': self.get_object().pk})
+
+    def post(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return self.handle_no_permission()
+
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        comentario = form.save(commit=False)
+        comentario.user = self.request.user
+        comentario.blog = self.get_object()
+        comentario.save()
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 class PublicacionCreateView(LoginRequiredMixin, CreateView):
     model = Blog
     template_name = "Vicodin/vbc/publicacion_create.html"
-    login_url = '/users/login/'
+    login_url = '/accounts/login/'
     fields = ["name", "date", "description",'body','image']
     success_url = reverse_lazy("PublicacionList")
 
@@ -122,7 +159,7 @@ class PublicacionCreateView(LoginRequiredMixin, CreateView):
 class PublicacionUpdateView(LoginRequiredMixin, UpdateView):
     model = Blog
     success_url = reverse_lazy("PublicacionList")
-    login_url = '/users/login/'
+    login_url = '/accounts/login/'
     fields = ["name", "date", "description"]
     template_name = "Vicodin/vbc/publicacion_update.html"
 
@@ -130,5 +167,5 @@ class PublicacionUpdateView(LoginRequiredMixin, UpdateView):
 class PublicacionDeleteView(LoginRequiredMixin, DeleteView):
     model = Blog
     success_url = reverse_lazy("PublicacionList")
-    login_url = '/users/login/'
+    login_url = '/accounts/login/'
     template_name = 'Vicodin/vbc/publicacion_delete.html'

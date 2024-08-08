@@ -1,5 +1,5 @@
 from django import forms
-from .models import Blog, Cliente, Producto
+from .models import Blog, Cliente, Comentario, Producto
 
 
 class ProductoForm(forms.ModelForm):
@@ -25,3 +25,8 @@ class BlogForm(forms.ModelForm):
 
 class BuscarProductoForm(forms.Form):
     producto = forms.CharField()
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['comment']

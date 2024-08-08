@@ -38,8 +38,51 @@
                         <p>{{blog.description}}</p>
                         <br>
                         <p>{{blog.body}}</p>
-                        <a class="btn btn-danger" href="{% url 'PublicacionDelete' blog.id %}">Borrar</a>
-                        <a class="btn btn-success" href="{% url 'PublicacionUpdate' blog.id %}">Editar</a>
+                        {% if request.user == blog.author or request.user.is_superuser %}
+                            <a class="btn btn-danger" href="{% url 'PublicacionDelete' blog.id %}">Borrar</a>
+                            <a class="btn btn-success" href="{% url 'PublicacionUpdate' blog.id %}">Editar</a>
+                        {% endif %}
+
+
+                        <div class="ltn__comment-area mb-50">
+                            <h4 class="title-2">03 Comments</h4>
+                            <div class="ltn__comment-inner">
+                                <ul>
+                                    {% for comentario in comentarios %}
+                                        <li>
+                                            <div class="ltn__comment-item clearfix">
+                                                <div class="ltn__commenter-img">
+                                                    {% if comentario.user.imagen %}
+                                                        <img src="{{ comentario.user.imagen.imagen.url }}" alt="Image">
+                                                        {% else %}
+                                                        <img src="{% static 'Vicodin/assets/img/default-avatar.png' %}" alt="Image">
+                                                    {% endif %}
+                                                </div>
+                                                <div class="ltn__commenter-comment">
+                                                    <h6><a href="#">{{ comentario.user.username }}</a></h6>
+                                                    <span class="comment-date">{{ comentario.date }}</span>
+                                                    <p>{{ comentario.comment }}</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% empty %}
+                                        <p>No hay comentarios</p>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="ltn__comment-reply-area ltn__form-box mb-60---">
+                            <h4 class="title-2">Comentar</h4>
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="btn-wrapper">
+                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit"><i class="far fa-comments"></i>
+                                        Comentar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
