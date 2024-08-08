@@ -22,8 +22,11 @@
                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
                                     <div class="ltn__product-item ltn__product-item-3 text-center">
                                         <div class="product-img">
-                                            <a href="#"><img src="{% static 'Vicodin/assets/img/product/12.png' %}"
-                                                    alt="#"></a>
+                                                    {% if producto.image %}
+                                                    <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
+                                                    {% else %}
+                                                    <img src="{% static 'Vicodin/assets/img/product/12.png' %}" alt="No hay imagen disponible">
+                                                    {% endif %}
                                             <div class="product-hover-action">
                                                 <ul>
                                                     <li>

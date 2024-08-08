@@ -67,7 +67,7 @@ class ProductoListView(ListView):
         return super().get(request, *args, **kwargs)
 
 
-class ProductoDetailView(LoginRequiredMixin, DetailView):
+class ProductoDetailView(DetailView):
     model = Producto
     template_name = "Vicodin/vbc/producto_detail.html"
     def get_login_url(self):
@@ -77,7 +77,7 @@ class ProductoDetailView(LoginRequiredMixin, DetailView):
 class ProductoCreateView(LoginRequiredMixin, CreateView):
     model = Producto
     template_name = "Vicodin/vbc/producto_create.html"
-    fields = ["name", "price", "description"]
+    fields = ["name", "price", "description",'image']
     success_url = reverse_lazy("ProductoList")
 
 
@@ -85,7 +85,7 @@ class ProductoUpdateView(LoginRequiredMixin, UpdateView):
     model = Producto
     success_url = reverse_lazy("ProductoList")
     login_url = '/accounts/login/'
-    fields = ["name", "price", "description"]
+    fields = ["name", "price", "description",'image']
     template_name = "Vicodin/vbc/producto_update.html"
 
 
@@ -106,13 +106,7 @@ class PublicacionListView(ListView):
         return super().get(request, *args, **kwargs)
 
 
-# class PublicacionDetailView(DetailView):
-#     model = Blog
-#     template_name = "Vicodin/vbc/publicacion_detail.html"
-#     def get_login_url(self):
-#         return self.login_url
-
-class PublicacionDetailView(LoginRequiredMixin, FormMixin, DetailView):
+class PublicacionDetailView(FormMixin, DetailView):
     model = Blog
     template_name = "Vicodin/vbc/publicacion_detail.html"
     form_class = ComentarioForm
@@ -154,6 +148,9 @@ class PublicacionCreateView(LoginRequiredMixin, CreateView):
     login_url = '/accounts/login/'
     fields = ["name", "date", "description",'body','image']
     success_url = reverse_lazy("PublicacionList")
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class PublicacionUpdateView(LoginRequiredMixin, UpdateView):

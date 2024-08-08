@@ -43,22 +43,6 @@
                                 <div class="product-price">
                                     <span>${{ producto.price }}</span>
                                 </div>
-                                <div class="ltn__product-details-menu-3">
-                                    <ul>
-                                        <li>
-                                            <a href="{% url 'ProductoUpdate' producto.id %}" title="Editar">
-                                                <i class="far fa-edit"></i>
-                                                <span>Editar</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{% url 'ProductoDelete' producto.id %}" title="Borrar">
-                                                <i class="far fa-delete"></i>
-                                                <span>Borrar</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
                                 <hr>
                             </div>
                         </div>
@@ -80,6 +64,10 @@
                         </div>
                     </div>
                 </div>
+                {% if request.user == blog.author or request.user.is_superuser %}
+                    <a class="btn btn-danger" href="{% url 'ProductoDelete' producto.id %}">Borrar</a>
+                    <a class="btn btn-success" href="{% url 'ProductoUpdate' producto.id %}">Editar</a>
+                {% endif %}
                 <!-- Shop Tab End -->
             </div>
         </div>

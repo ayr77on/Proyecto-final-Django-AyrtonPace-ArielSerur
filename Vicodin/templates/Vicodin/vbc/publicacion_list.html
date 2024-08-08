@@ -49,9 +49,11 @@
                 </div>
             {% endfor %}
             {% endif %}
-
-            <a href="{% url 'PublicacionCreate' %}" class="btn theme-btn-1 btn-effect-1 text-uppercase">Crear nueva
+            
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'PublicacionCreate' %}" class="btn theme-btn-1 btn-effect-1 text-uppercase">Crear nueva
                 Publicacion</a>
+            {% endif %}
         </div>
     </div>
 </div>
