@@ -15,14 +15,26 @@
                             <div class="ltn__shop-details-img-gallery">
                                 <div class="ltn__shop-details-large-img">
                                     <div class="single-large-img">
-                                        <a href="{% static 'Vicodin/assets/img/product/12.png' %}" data-rel="lightcase:myCollection">
-                                            <img src="{% static 'Vicodin/assets/img/product/12.png' %}" alt="Image">
+                                        {% if producto.image %}
+                                        <a href="{{ producto.image.url }}" data-rel="lightcase:myCollection">
+                                            <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
                                         </a>
+                                        {% else %}
+                                        <a href="{% static 'Vicodin/assets/img/no-image.jpg' %}" data-rel="lightcase:myCollection">
+                                            <img src="{% static 'Vicodin/assets/img/no-image.jpg' %}" alt="No hay imagen disponible">
+                                        </a>
+                                        {% endif %}
+                                        
                                     </div>
                                 </div>
                                 <div class="ltn__shop-details-small-img slick-arrow-2">
                                     <div class="single-small-img">
-                                        <img src="{% static 'Vicodin/assets/img/product/12.png' %}" alt="Image">
+                                        
+                                        {% if producto.image %}
+                                            <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
+                                        {% else %}
+                                            <img src="{% static 'Vicodin/assets/img/no-image.jpg' %}" alt="Image">
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -31,12 +43,11 @@
                             <div class="modal-product-info shop-details-info pl-0">
                                 <div class="product-ratting">
                                     <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                        <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star"></i></li>
+                                        <li><i class="fas fa-star-half-alt"></i></li>
+                                        <li><i class="far fa-star"></i></li>
                                     </ul>
                                 </div>
                                 <h3>{{ producto.name }}</h3>

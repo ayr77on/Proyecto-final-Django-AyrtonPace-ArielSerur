@@ -14,37 +14,26 @@
                         <div class="ltn__product-tab-content-inner ltn__product-grid-view">
                             <div class="row">
                                 {% if not productos %}
-                                <!-- Mensaje cuando no hay productos -->
                                 <div class="col-12">
                                     <p>No se encontraron los productos buscados.</p>
                                 </div>
                                 {% else %}
-                                <!-- Iteración sobre los productos si existen -->
                                 {% for producto in productos %}
-                                <!-- ltn__product-item -->
                                 <div class="col-xl-3 col-lg-4 col-sm-6 col-6">
                                     <div class="ltn__product-item ltn__product-item-3 text-center">
                                         <div class="product-img">
-                                            <a href="#"><img src="{% static 'Vicodin/assets/img/product/12.png' %}"
-                                                    alt="#"></a>
+                                            {% if producto.image %}
+                                                <img src="{{ producto.image.url }}" alt="{{ producto.name }}">
+                                            {% else %}
+                                                <img src="{% static 'Vicodin/assets/img/no-image.jpg' %}" alt="No hay imagen disponible">
+                                            {% endif %}
                                             <div class="product-hover-action">
                                                 <ul>
                                                     <li>
-                                                        <a href="#" title="Quick View" data-bs-toggle="modal"
+                                                        <a href="{% url 'ProductoDetail' producto.id %}" title="Quick View" data-bs-toggle="modal"
                                                             data-bs-target="#quick_view_modal">
                                                             <i class="far fa-eye"></i>
                                                         </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Add to Cart" data-bs-toggle="modal"
-                                                            data-bs-target="#add_to_cart_modal">
-                                                            <i class="fas fa-shopping-cart"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#" title="Wishlist" data-bs-toggle="modal"
-                                                            data-bs-target="#liton_wishlist_modal">
-                                                            <i class="far fa-heart"></i></a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -52,14 +41,14 @@
                                         <div class="product-info">
                                             <div class="product-ratting">
                                                 <ul>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
+                                                    <li><i class="fas fa-star"></i></li>
+                                                    <li><i class="fas fa-star"></i></li>
+                                                    <li><i class="fas fa-star"></i></li>
+                                                    <li><i class="fas fa-star-half-alt"></i></li>
+                                                    <li><i class="far fa-star"></i></li>
                                                 </ul>
                                             </div>
-                                            <h2 class="product-title"><a href="#">{{producto.name}}</a></h2>
+                                            <h2 class="product-title"><a href="{% url 'ProductoDetail' producto.id %}">{{producto.name}}</a></h2>
                                             <div class="product-price">
                                                 <span>${{producto.price}}</span>
                                             </div>
