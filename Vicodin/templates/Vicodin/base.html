@@ -59,7 +59,9 @@
                                             <li><a href="{% url 'Inicio' %}">Inicio</a></li>
                                             <li><a href="{% url 'SobreNosotros' %}">Sobre nosotros</a></li>
                                             <li><a href="{% url 'ProductoList' %}">Productos</a></li>
-                                            <li><a href="{% url 'PublicacionList' %}">Publicaciones</a></li>
+                                            {% if request.user.is_authenticated %}
+                                                <li><a href="{% url 'PublicacionList' %}">Publicaciones</a></li>
+                                            {% endif %}
                                             <li><a href="{% url 'BuscarProducto' %}">Buscar productos</a></li>
                                         </ul>
                                     </div>

@@ -99,7 +99,7 @@ class ProductoDeleteView(LoginRequiredMixin, DeleteView):
 # --------------------------------------------------------------------------------
 
 # VISTAS BASADAS EN CLASES - Blog
-class PublicacionListView(ListView):
+class PublicacionListView(LoginRequiredMixin,ListView):
     model = Blog
     template_name = "Vicodin/vbc/publicacion_list.html"
     def get(self, request, *args, **kwargs):
