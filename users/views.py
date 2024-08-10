@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,authenticate
 from users.forms import UserEditForm, UserRegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
+from .models import Imagen
 
 def login_request(request):
 
@@ -52,12 +53,17 @@ def editar_perfil(request):
         miFormulario = UserEditForm(request.POST, request.FILES, instance=usuario)
         if miFormulario.is_valid():
             print(miFormulario.cleaned_data)
-            if miFormulario.cleaned_data.get('imagen'):
-                usuario.imagen.imagen = miFormulario.cleaned_data.get('imagen')
-                usuario.imagen.save()
+            imagen = miFormulario.cleaned_data.get('imagen')
+            if imagen:
+                try:
+                    usuario.imagen.imagen = imagen
+                except Imagen.DoesNotExist:
+                    Imagen.objects.create(user=usuario, imagen=imagen)
+                else:
+                    usuario.imagen.save()
+                    
             miFormulario.save()
-
-            return render(request, "Vicodin/index.html")
+            return render(request,"Vicodin/index.html")
 
     else:
         miFormulario = UserEditForm(instance=usuario)

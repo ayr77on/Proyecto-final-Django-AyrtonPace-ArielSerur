@@ -45,7 +45,7 @@
 
 
                         <div class="ltn__comment-area mb-50">
-                            <h4 class="title-2">03 Comments</h4>
+                            <h4 class="title-2">Comments</h4>
                             <div class="ltn__comment-inner">
                                 <ul>
                                     {% for comentario in comentarios %}
@@ -72,17 +72,20 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="ltn__comment-reply-area ltn__form-box mb-60---">
-                            <h4 class="title-2">Comentar</h4>
-                            <form method="POST">
-                                {% csrf_token %}
-                                {{ form.as_p }}
-                                <div class="btn-wrapper">
-                                    <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit"><i class="far fa-comments"></i>
-                                        Comentar</button>
-                                </div>
-                            </form>
-                        </div>
+                        {% if request.user.is_authenticated %}
+                            <div class="ltn__comment-reply-area ltn__form-box mb-60---">
+                                <h4 class="title-2">Comentar</h4>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}
+                                    <div class="btn-wrapper">
+                                        <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit"><i class="far fa-comments"></i>
+                                            Comentar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        {% endif %}
+                        
                     </div>
                 </div>
             </div>
