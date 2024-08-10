@@ -43,7 +43,7 @@ Tenemos la opción para loguearnos y registrarnos en el sistema. Aquí detallo a
 
 ## Funcionalidades después de Iniciar Sesión
 
-Una vez logueados en el sistema, se encontrarán con una opción más en el menú que es **"Publicaciones"**. Esta opción se habilita una vez que se ingresa al sistema porque se pensó como una especie de intranet donde solamente los usuarios autenticados pueden ver las publicaciones realizadas.
+Una vez logueados en el sistema, se encontrarán con una opción más en el menú que es **"Publicaciones"**. Esta opción se habilita una vez que se ingresa al sistema porque se pensó como una especie de intranet donde solamente los usuarios autenticados pueden ver las publicaciones realizadas. Tambien se pueden comentar las publicaciones para demostrar tu opinión acerca de los demas posteos.
 
 ### Roles de Usuarios
 
@@ -59,6 +59,12 @@ Para el desarrollo del proyecto, nos juntamos para trabajar mediante la metodolo
 
 Para acceder al administrador de Django, utiliza las siguientes credenciales:
 
-- **Nombre de usuario:** ayrton
-- **Contraseña:** 123123
+- **Nombre de usuario:** Ayrton
+- **Contraseña:** Test123!
+
+
+## Demo del sistema
+[URL VIDEO](https://www.youtube.com/watch?v=t17pKjN1oAc)
+
+
 
