@@ -1,7 +1,7 @@
 
 # Vicodin
 
-Vicodin es un proyecto de una farmacéutica que permite la gestión de Clientes, Productos y Publicaciones para un pequeño blog. Utiliza la API de Django para dar de alta estos modelos a través de formularios (Forms).
+Vicodin es un proyecto de una farmacéutica que permite la gestión de Productos y Publicaciones.Utiliza la API de Django para dar de alta estos modelos a través de formularios (Forms).
 
 ## Instalación
 1. Clona el repositorio.
