@@ -54,8 +54,8 @@ Una vez logueados en el sistema, se encontrarán con una opción más en el men�
 ## Metodología de Trabajo
 
 Para el desarrollo del proyecto, nos juntamos para trabajar mediante la metodología de pair programming, es decir, se iba haciendo el trabajo a la par para ir entendiendo los conceptos, aprendiendo de los errores juntos y ayudándonos para encontrar la solución.
-Ariel se encargo de toda la parte de Login,Registracion y edicion de Perfil.
-Ayrton se encargo de toda la parte del CRUD de Publicaciones incluyendo el modulo de Comentarios entre Administradores
+- **Ariel** se encargo de toda la parte de Login,Registracion y edicion de Perfil.
+- **Ayrton** se encargo de toda la parte del CRUD de Publicaciones incluyendo el modulo de Comentarios entre Administradores
 
 De igual manera el equipo acompaño al otro integrante en hacer cada modulo para entender el proyecto en su totalidad
 
