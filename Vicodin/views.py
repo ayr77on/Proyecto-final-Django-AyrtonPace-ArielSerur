@@ -11,36 +11,6 @@ from .forms import BlogForm, BuscarProductoForm, ClienteForm, ComentarioForm, Pr
 def inicio(request):
     return render(request, "Vicodin/index.html")
 
-def crear_cliente(request):
-    if request.method == 'POST':
-        form = ClienteForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'Vicodin/form_exito.html', {'form': "Cliente","texto_breadcrumb" : "Alta de cliente exitosa"})
-    else:
-        form = ClienteForm()
-    return render(request, 'Vicodin/clientes.html', {'form': form,"texto_breadcrumb" : "Dar alta cliente"})
-
-def crear_blog(request):
-    if request.method == 'POST':
-        form = BlogForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'Vicodin/form_exito.html', {'form': "Cliente","texto_breadcrumb" : "Alta de publicacion exitosa"})
-    else:
-        form = BlogForm()
-    return render(request, 'Vicodin/publicaciones.html', {'form': form,"texto_breadcrumb" : "Dar alta publicación"})
-
-def crear_producto(request):
-    if request.method == 'POST':
-        form = ProductoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'Vicodin/form_exito.html', {'form': "Producto","texto_breadcrumb" : "Alta de producto exitosa"})
-    else:
-        form = ProductoForm()
-    return render(request, 'Vicodin/productos.html', {'form': form,"texto_breadcrumb" : "Dar alta producto"})
-
 def buscar_producto(request):
     if request.method == "POST":
         mi_formulario = BuscarProductoForm(request.POST)
