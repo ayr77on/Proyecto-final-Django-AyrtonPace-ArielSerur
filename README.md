@@ -57,7 +57,8 @@ Para el desarrollo del proyecto, nos juntamos para trabajar mediante la metodolo
 - **Ariel** se encargo de toda la parte de Login,Registracion y edicion de Perfil.
 - **Ayrton** se encargo de toda la parte del CRUD de Publicaciones incluyendo el modulo de Comentarios entre Administradores
 
-De igual manera el equipo acompaño al otro integrante en hacer cada modulo para entender el proyecto en su totalidad
+De igual manera el equipo acompaño al otro integrante en hacer cada modulo para entender el proyecto en su totalidad.
+Las validaciones de superadministradores y usuario logueado se realizaron de forma conjunta para poner de acuerdo que modulos se mostraban si un usuario estaba autenticado.
 
 ## Administrador
 
