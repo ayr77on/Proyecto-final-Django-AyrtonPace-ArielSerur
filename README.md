@@ -19,14 +19,41 @@ python manage.py runserver
 
 Una vez que el proyecto esté en funcionamiento, ir a [http://127.0.0.1:8000/](http://127.0.0.1:8000/) para visualizarlo.
 
-En el menú principal, encontrarás cinco opciones: Inicio, Clientes, Productos, Publicaciones y Buscar Productos. Cada opción te dirigirá al formulario correspondiente para dar de alta el modelo relacionado.
+## Descripción del Proyecto
 
-- **Inicio:** Página HTML estática que servirá como base para el proyecto final.
-- **Clientes:** Formulario para registrar nuevos clientes.
-- **Productos:** Formulario para registrar nuevos productos.
-- **Publicaciones:** Formulario para crear nuevas publicaciones en el blog.
-- **Buscar Productos:** Formulario para buscar productos por el campo de Nombre. Por ejemplo, puedes buscar "Barbijo" para ver algunos productos precargados. 
-En caso de buscar un producto no existente arrojará un mensaje de que no se encontraron los productos.
+Una vez ingresando a la URL, se puede ver el inicio de la página. Se pueden ver 4 opciones en el menú:
+
+1. **Inicio**: Lleva a la página de inicio.
+2. **Sobre nosotros**: Página explicando quiénes somos.
+3. **Productos**: Una página para ver los productos cargados.
+4. **Buscar productos**: Un formulario para buscar los productos cargados.
+
+## Autenticación
+
+Tenemos la opción para loguearnos y registrarnos en el sistema. Aquí detallo algunos usuarios ya cargados:
+
+- **Usuario**: Ayrton  
+  **Contraseña**: Test123!
+
+- **Usuario**: Ariel  
+  **Contraseña**: Test123!
+
+- **Usuario**: Farma  
+  **Contraseña**: Test123!
+
+## Funcionalidades después de Iniciar Sesión
+
+Una vez logueados en el sistema, se encontrarán con una opción más en el menú que es **"Publicaciones"**. Esta opción se habilita una vez que se ingresa al sistema porque se pensó como una especie de intranet donde solamente los usuarios autenticados pueden ver las publicaciones realizadas.
+
+### Roles de Usuarios
+
+- **Ayrton y Ariel**: Son super administradores. Esto quiere decir que cuando estos usuarios ingresan al sistema, pueden modificar y borrar las publicaciones que hicieron otros usuarios.
+- **Farma**: Es un administrador corriente que solo puede editar y modificar sus publicaciones.
+
+## Metodología de Trabajo
+
+Para el desarrollo del proyecto, nos juntamos para trabajar mediante la metodología de pair programming, es decir, se iba haciendo el trabajo a la par para ir entendiendo los conceptos, aprendiendo de los errores juntos y ayudándonos para encontrar la solución.
+
 
 ## Administrador
 
