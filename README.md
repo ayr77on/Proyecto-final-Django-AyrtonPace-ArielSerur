@@ -64,7 +64,8 @@ Para acceder al administrador de Django, utiliza las siguientes credenciales:
 
 
 ## Demo del sistema
-[URL VIDEO](https://www.youtube.com/watch?v=t17pKjN1oAc)
+<a href="https://www.youtube.com/watch?v=t17pKjN1oAc" target="_blank">Ver video de la demo</a>
+
 
 
 
