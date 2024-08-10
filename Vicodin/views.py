@@ -59,6 +59,10 @@ def about(request):
     return render(request, "Vicodin/nosotros.html")
 
 
+def custom_handler_404(request, exception):
+    return render(request, 'Vicodin/404.html', status=404)
+
+
 # VISTAS BASADAS EN CLASES - Productos
 class ProductoListView(ListView):
     model = Producto
